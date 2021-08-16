@@ -1,5 +1,5 @@
 // Atlas:
-// mongo mongo mongodb+srv://shangjun:jsjsamm@cluster0.ojh7b.mongodb.net/foodbook_user scripts/init.mongo.js
+// mongo mongodb+srv://shangjun:jsjsam@cluster0.ojh7b.mongodb.net/foodbook_user scripts/init.mongo.js
 
 db.users.remove({});
 
