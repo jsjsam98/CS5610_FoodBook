@@ -31,6 +31,7 @@ const Login = (props) => {
       .catch(e => {
         console.log(e)
       })
+      
   };
 
   return (
@@ -63,7 +64,7 @@ const Login = (props) => {
         </div>
 
         <button onClick={login} className='btn btn-success'>
-          Login
+          Add User
         </button>
       </div>
     </div>

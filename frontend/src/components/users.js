@@ -34,7 +34,8 @@ const User = (props) => {
 
   useEffect(() => {
     getUser(props.match.params.id);
-  }, [props.match.params.id]);
+  }, []);
+
 
   return (
     <div>
@@ -44,10 +45,12 @@ const User = (props) => {
 
           <h4> Record </h4>
           <div className='row'>
+            <p>{records.total_results}</p>
+
             {records !== [] ? (
-              records.records.map((record, index) => {
+              (records.records||[]).map((record, index) => {
                 return (
-                  <div className='col-lg-4 pb-1'>
+                  <div key={index} className='col-lg-4 pb-1'>
                     <div className='card'>
                       <div className='card-body'>
                         <p className='card-text'>
