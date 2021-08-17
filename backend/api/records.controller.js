@@ -2,8 +2,9 @@ import RecordsDAO from "../dao/recordsDAO.js";
 
 export default class RecordsController {
   static async apiGetRecord(req, res, next) {
+
     let filters = {};
-    if (req.query.id) {
+    if (req.query.user_id) {
       filters.user_id = req.query.user_id;
     }
 

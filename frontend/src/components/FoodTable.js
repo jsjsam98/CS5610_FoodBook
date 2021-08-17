@@ -94,7 +94,7 @@ const FoodTable = (props) => {
   return (
 
     <div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <Formik
         initialValues={initialValues}
         //validationSchema={validationSchema}
