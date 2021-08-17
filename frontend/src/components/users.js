@@ -5,16 +5,26 @@ import UserDataService from "../services/user.js";
 const User = (props) => {
   const initialUserState = {
     id: null,
-    user_name: "test",
-    user_id: "1234",
-
+    user_name: "",
+    user_id: "",
   };
+
+  const [records,setRecords] = useState([]);
+
   const [user, setUser] = useState(initialUserState);
 
-  const getUser = user_id => {
-    UserDataService.get(user_id)
+  const getUser = id => {
+    UserDataService.get(id)
       .then(response => {
         setUser(response.data);
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    UserDataService.getAllRecord(id)
+      .then(response => {
+        setRecords(response.data.text);
         console.log(response.data);
       })
       .catch(e => {
@@ -37,22 +47,19 @@ const User = (props) => {
 
           <h4> Record </h4>
           <div className='row'>
-            {-1 > 0 ? (
-              user.records.map((record, index) => {
-                return (
-                  <div className='col-lg-4 pb-1' key={index}>
+            {records===''? (
+
+                  <div className='col-lg-4 pb-1'>
                     <div className='card'>
                       <div className='card-body'>
                         <p className='card-text'>
-                          {record.text}
+                          {records.text}
                           <br />
-                          <strong>Date: </strong>{record.date}
+                          <strong>Date: </strong>{records.date}
                         </p>
                       </div>
                     </div>
                   </div>
-                );
-              })
             ) : (
               <div className='col-sm-4'>
                 <p>No reviews yet.</p>

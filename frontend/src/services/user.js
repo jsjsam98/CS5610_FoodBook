@@ -13,6 +13,10 @@ class UserDataService {
     return http.get(`?user_id=${id}`);
   }
 
+  getAllRecord(id){
+    return http.get(`/record?user_id=${id}`);
+  }
+
   deleteUser(userId) {
     return http.delete('', {data:{user_id: userId}})
   }
