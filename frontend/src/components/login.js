@@ -14,6 +14,7 @@ const Login = (props) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value});
     console.log(user)
+    console.log('props is',props)
   };
 
   const login = () => {

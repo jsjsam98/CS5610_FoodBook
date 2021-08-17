@@ -47,7 +47,7 @@ const User = (props) => {
 
           <h4> Record </h4>
           <div className='row'>
-            {records===''? (
+            {records !== ''? (
 
                   <div className='col-lg-4 pb-1'>
                     <div className='card'>
@@ -62,7 +62,7 @@ const User = (props) => {
                   </div>
             ) : (
               <div className='col-sm-4'>
-                <p>No reviews yet.</p>
+                <p>No records yet.</p>
               </div>
             )}
           </div>

@@ -26,14 +26,12 @@ class UserDataService {
   }
 
   createRecord(data) {
-    return http.post("/record-new", data);
+    return http.post("/record", data);
   }
 
   updateRecord(data) {
-    return http.put("/record-edit", data);
+    return http.put("/record", data);
   }
-
-
 }
 
 export default new UserDataService();

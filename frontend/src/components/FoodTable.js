@@ -5,15 +5,14 @@ import MaterialTable from "material-table";
 import tableIcons from "./icons";
 // import { useGoogleAuth } from './googleAuth';
 import Input from "@material-ui/core/Input";
+import UserDataService from "../services/user";
+import User from "./users";
 
 let foodName;
 let foodCal;
 let total;
 
-
-
-
-const FoodTable = () => {
+const FoodTable = (props) => {
   const initialValues = {
     Food: "",
     Kcal: "",
@@ -47,7 +46,7 @@ const FoodTable = () => {
     },
     { title: "Kcal", field: "Kcal" },
     { title: "Quantity", field: "Quantity" },
-    { title: "Total", field: "Total"}
+    { title: "Total", field: "Total" },
   ]);
 
   const APP_ID = "51a353f2";
@@ -67,7 +66,6 @@ const FoodTable = () => {
     );
 
     const data = await response.json();
-    //console.log(data.parsed);
     setRecipes(data.parsed);
   };
 
@@ -80,19 +78,33 @@ const FoodTable = () => {
     setQuery(search);
     setSearch("");
   };
+
+  const saveData = () => {
+    var data = {
+      user_id: props.value,
+      text: 'test text'
+    };
+    console.log(data)
+    UserDataService.createRecord(data)
+  }
+
+
+
   // const { googleUser } = useGoogleAuth();
   return (
+
     <div>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
       <Formik
         initialValues={initialValues}
         //validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values);
+ 
           const newValues = {
             Food: foodName,
             Kcal: foodCal,
             Quantity: values.Quantity,
-            Total: parseInt(foodCal)*parseInt(values.Quantity)
+            Total: parseInt(foodCal) * parseInt(values.Quantity),
           };
 
           new Promise((resolve, reject) => {
@@ -224,14 +236,23 @@ const FoodTable = () => {
           </Form>
         )}
       </Formik>
+      <button
+        className='btn btn-primary col-lg-5 mx-1 mb-1'
+        type='button'
+        onClick={saveData}
+      >
+        Save
+      </button>
+      <p>valuetable{props.value}</p>
       {/* <p>Welcome user {googleUser.getBasicProfile().getId()}</p> */}
     </div>
   );
 };
 export default FoodTable;
 
-{/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-
+{
+  // /* <pre>{JSON.stringify(data, null, 2)}</pre> */
+}
 
 //   console.log('ID: ' + googleUser.getBasicProfile().getId());
 //   console.log('Full Name: ' + googleUser.getBasicProfile().getName());

@@ -42,7 +42,7 @@ function App() {
                 className='nav-link'
                 style={{ cursor: "pointer" }}
               >
-                Logout {user.name}
+                Logout {user.id}
               </a>
             ) : (
               <Link to={"/login"} className='nav-link'>
@@ -65,7 +65,9 @@ function App() {
           
           <Route
             path='/calculator'
-            component={Calculator}/>
+            render={() => (
+              <Calculator value={user?(user.id):"You have not log in"} />
+            )}/>
           <Route
             path='/login'
             render={(props) => <Login {...props} login={login} />}
